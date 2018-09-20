@@ -1,5 +1,5 @@
-conda env create -f my-environment.yml 
-source activate myenv
+
+source ./FirstEnv/bin/activate 
 jupyter nbconvert —execute Ex_1.ipynb
 open Ex_1.html
-source deactivate
+deactivate
