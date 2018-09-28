@@ -11,7 +11,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-{{ checksum "requirements_dev.txt" }}
           - v1-dependencies-
 
       - run:
@@ -19,19 +19,19 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            pip install -r requirements_dev.txt
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       - run:
           name: run tests
           command: |
             . venv/bin/activate
             mkdir html-artifacte-report
-            jupyter nbconvert --execute hw1.ipynb
-            mv hw1.html html-artifacte-report/hw1.html
+            jupyter nbconvert --execute Ex_1.ipynb
+            mv hw1.html html-artifacte-report/Ex_1.html
       - store_artifacts:
           path: html-artifacte-report
           destination: html-artifacte-report
