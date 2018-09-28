@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    docker:
+    machine:
       - image: circleci/python:3.6.1
 
     working_directory: ~/repo
@@ -10,16 +10,11 @@ jobs:
       - checkout
 
       - run:
-          name: install dependencies
+          name: install dependencies and convert to html
           command: |
             python3 -m venv venv
             . venv/bin/activate
             venv/bin/pip install -r requirements_dev.txt
-        
-      - run:
-          name: run tests
-          command: |
-            . venv/bin/activate
             mkdir html-artifacte-report
             jupyter nbconvert --execute Ex_1.ipynb
             mv Ex_1.html html-artifacte-report/Ex_1.html
