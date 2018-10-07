@@ -14,7 +14,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            venv/bin/pip install -r requirements_dev.txt
+            venv/bin/pip install -r requirements.txt
             mkdir html-artifacte-report
             jupyter nbconvert --execute Ex_1.ipynb
             mv Ex_1.html html-artifacte-report/Ex_1.html
