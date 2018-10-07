@@ -6,5 +6,5 @@ CircleCI Badge
 
 Homework 4
 
-From requirements_dev.txt
+From requirements.txt
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/SharafutdinovRuslan/Homework/master?filepath=Ex_1.ipynb)
