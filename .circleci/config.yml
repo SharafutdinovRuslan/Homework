@@ -39,12 +39,18 @@ jobs:
           command: |
             . venv/bin/activate
             venv/bin/pip install kaggle
-            export KAGGLE_USERNAME=sharafutdinov
+            export KAGGLE_USERNAME
             export KAGGLE_KEY
             echo "{"username":\"${KAGGLE_USERNAME}\","key":\"${KAGGLE_KEY}\}" > kaggle.json
             mkdir ~/.kaggle
             mv kaggle.json ~/.kaggle
-            kaggle competitions download titanic 
+            kaggle competitions download titanic --file train.csv test.csv 
+
+      - run: 
+          name: create submission
+          command: |
+            . venv/bin/activate
+            mkdir download_submission
 
       - store_artifacts:
           path: html-artifacte-report
