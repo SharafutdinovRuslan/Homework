@@ -21,7 +21,7 @@ jobs:
             . venv/bin/activate
             venv/bin/pip install -r requirements.txt
 
-      - save_cash:
+      - save_cashe:
           path:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
