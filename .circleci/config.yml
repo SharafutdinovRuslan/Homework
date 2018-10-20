@@ -39,7 +39,7 @@ jobs:
           command: |
             . venv/bin/activate
             venv/bin/pip install kaggle
-            export KAGGLE_USERNAME
+            export KAGGLE_USERNAME=sharafutdinov
             export KAGGLE_KEY
             echo "{"username":\"${KAGGLE_USERNAME}\","key":\"${KAGGLE_KEY}\}" > kaggle.json
             mkdir .kaggle
