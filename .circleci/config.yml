@@ -50,3 +50,8 @@ jobs:
       - store_artifacts:
           path: download_submission
           destination: download_submission
+
+      - run: 
+          name: submit
+          command: |
+            kaggle competitions submit titanic -f download_submission/submission_1.csv -m 'SUBMITTED'
