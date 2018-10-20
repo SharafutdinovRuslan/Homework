@@ -55,4 +55,10 @@ jobs:
           name: submit
           command: |
             . venv/bin/activate
+            export KAGGLE_USERNAME=sharafutdinov
+            export KAGGLE_KEY
+            echo "{"username":\"${KAGGLE_USERNAME}\","key":\"${KAGGLE_KEY}\}" > kaggle.json
+            mkdir ~/.kaggle
+            mv kaggle.json ~/.kaggle
+            chmod 600 /home/circleci/.kaggle/kaggle.json
             kaggle competitions submit titanic -f download_submission/submission_1.csv -m 'SUBMITTED'
