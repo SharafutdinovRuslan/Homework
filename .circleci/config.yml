@@ -27,14 +27,6 @@ jobs:
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       - run:
-          name: create html artifact
-          command: |
-            . venv/bin/activate
-            mkdir html-artifacte-report
-            jupyter nbconvert --execute Ex_1.ipynb
-            mv Ex_1.html html-artifacte-report/Ex_1.html
-
-      - run:
           name: download Titanic files from Kaggle
           command: |
             . venv/bin/activate
@@ -45,14 +37,16 @@ jobs:
             mkdir ~/.kaggle
             mv kaggle.json ~/.kaggle
             chmod 600 /home/circleci/.kaggle/kaggle.json
-            kaggle competitions download titanic --file train.csv --file test.csv 
+            kaggle competitions download titanic
 
       - run: 
           name: create submission
           command: |
             . venv/bin/activate
             mkdir download_submission
+            jupyter nbconvert --execute Titanic.ipynb
+            mv submission_1.csv download_submission/submission_1.csv
 
       - store_artifacts:
-          path: html-artifacte-report
-          destination: html-artifacte-report
+          path: download_submission
+          destination: download_submission
