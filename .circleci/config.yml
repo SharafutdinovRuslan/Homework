@@ -9,12 +9,27 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
+
       - run:
-          name: install dependencies and convert to html
+          name: install dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             venv/bin/pip install -r requirements.txt
+
+      - save_cash:
+          path:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+      -run:
+          name: create html artifact
+          command: |
+            . venv/bin/activate
             mkdir html-artifacte-report
             jupyter nbconvert --execute Ex_1.ipynb
             mv Ex_1.html html-artifacte-report/Ex_1.html
