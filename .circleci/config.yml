@@ -19,7 +19,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            venv/bin/pip install -r requirements.txt
 
       - save_cache:
           paths:
@@ -39,6 +39,11 @@ jobs:
           command: |
             . venv/bin/activate
             venv/bin/pip install kaggle
+            export KAGGLE_USERNAME
+            export KAGGLE_KEY
+            echo "{"username":\"${KAGGLE_USERNAME}\","key":\"${KAGGLE_KEY}\}" > kaggle.json
+            mkdir .kaggle
+            mv kaggle.json .kaggle
             kaggle competitions download titanic 
 
       - store_artifacts:
