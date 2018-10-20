@@ -44,7 +44,8 @@ jobs:
             echo "{"username":\"${KAGGLE_USERNAME}\","key":\"${KAGGLE_KEY}\}" > kaggle.json
             mkdir ~/.kaggle
             mv kaggle.json ~/.kaggle
-            kaggle competitions download titanic --file train.csv test.csv 
+            chmod 600 /home/circleci/.kaggle/kaggle.json
+            kaggle competitions download titanic --file train.csv --file test.csv 
 
       - run: 
           name: create submission
