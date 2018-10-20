@@ -29,6 +29,13 @@ jobs:
             jupyter nbconvert --execute Ex_1.ipynb
             mv Ex_1.html html-artifacte-report/Ex_1.html
 
+      - run:
+          name: download Titanic files from Kaggle
+          command: |
+            . venv/bin/activate
+            venv/bin/pip install kaggle
+            kaggle competitions download titanic 
+
       - store_artifacts:
           path: html-artifacte-report
           destination: html-artifacte-report
