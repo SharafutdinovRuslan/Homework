@@ -21,11 +21,6 @@ jobs:
             . venv/bin/activate
             venv/bin/pip install -r requirements.txt
 
-      - save_cache:
-          path:
-          - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
-
       - run:
           name: create html artifact
           command: |
